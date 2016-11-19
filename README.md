@@ -6,7 +6,7 @@ watchlist is a console application to create a personalized watchlist for yourse
 ```
 java watchList
 ```
-### Printing the watchlist
+### Adding a movie to the list
 ```
 java watchList <link> <1-10 priority>
 ```
