@@ -51,13 +51,16 @@ public class WatchList {
                     String nameString= "", timeString= "", genreString= "";
                     int hours=0, minutes=0;
                     int priority= Integer.parseInt(args[1]);
-                    String nameCheck1="<h1 itemprop=\"name\" class=\"\">", nameCheck2="&nbsp;";
+                    String nameCheck1="<h1 itemprop=\"name\" class=\"\">", nameCheckLong1="<h1 itemprop=\"name\" class=\"long\">", nameCheck2="&nbsp;";
                     String timeCheck1= "<time itemprop=\"duration\" datetime=\"PT", timeCheck2= "M\">";
                     String genreCheck1= "<span class=\"itemprop\" itemprop=\"genre\">", genreCheck2= "</span>";
 
                     while ((line = br.readLine()) != null) {
                         if(line.indexOf(nameCheck1)!=-1){
                             nameString= line.substring(line.indexOf(nameCheck1)+nameCheck1.length(), line.indexOf(nameCheck2));
+                        }
+                        else if(line.indexOf(nameCheckLong1)!=-1){
+                            nameString= line.substring(line.indexOf(nameCheckLong1)+nameCheckLong1.length(), line.indexOf(nameCheck2));
                         }
                         else if(line.indexOf(timeCheck1)!=-1){
                             timeString= line.substring(line.indexOf(timeCheck1)+timeCheck1.length(), line.indexOf(timeCheck2));
@@ -66,7 +69,8 @@ public class WatchList {
                             genreString= genreString+ line.substring(line.indexOf(genreCheck1)+genreCheck1.length(), line.indexOf(genreCheck2))+",";
                         }
                     }
-
+                    System.out.println(nameString);
+//<h1 itemprop="name" class="long">Birdman or (The Unexpected Virtue of Ignorance)&nbsp;<span id="titleYear">(<a href="/year/2014/?ref_=tt_ov_inf">2014</a>)</span>            </h1>
                     Movie newMovie= new Movie(nameString, timeString, genreString, priority);
                     pQueue.add(newMovie);
 
