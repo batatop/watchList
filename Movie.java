@@ -39,7 +39,7 @@ public class Movie implements Comparable<Movie>{
     @Override
     public String toString(){
         //clean up the name
-        name= name.replaceAll("\\b._.\\b"," ");
+        name= name.replaceAll("._."," ");
 
         //to convert time to a String
         String timeString="";
@@ -55,6 +55,7 @@ public class Movie implements Comparable<Movie>{
         return result.substring(0, result.length()-1);
     }
 
+    @Override
     public int compareTo(Movie otherMovie){
         if(priority==otherMovie.priority){
             return 0;

@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.regex.PatternSyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class WatchList {
@@ -92,9 +94,22 @@ public class WatchList {
             }
         }
         else if(args.length==1){
-            //1 argument conditions
+            //genre
+            if(checkGenre(args[0])){
+                int counter= 0;
+                System.out.println("watchList (" + args[0].toLowerCase() + ")");
+                while(!pQueue.isEmpty()){
+                    String movieLine= pQueue.peek().getMovie();
+                    if(movieLine.toLowerCase().indexOf(args[0].toLowerCase())!= -1){
+                        counter++;
+                        System.out.println(counter + ". " + pQueue.remove());
+                    }
+                    else{
+                        pQueue.remove();
+                    }
+                }
+            }
             //sort based on time
-            //filter genre
         }
         else if(args.length==0){
             printList(pQueue);
@@ -113,9 +128,82 @@ public class WatchList {
         return false;
     }
 
+    public static boolean checkGenre(String arg){
+        String smallArg= arg.toLowerCase();
+
+        if(smallArg.equals("action")){
+            return true;
+        }
+        else if(smallArg.equals("adventure")){
+            return true;
+        }
+        else if(smallArg.equals("animation")){
+            return true;
+        }
+        else if(smallArg.equals("biography")){
+            return true;
+        }
+        else if(smallArg.equals("comedy")){
+            return true;
+        }
+        else if(smallArg.equals("crime")){
+            return true;
+        }
+        else if(smallArg.equals("documentary")){
+            return true;
+        }
+        else if(smallArg.equals("drama")){
+            return true;
+        }
+        else if(smallArg.equals("family")){
+            return true;
+        }
+        else if(smallArg.equals("fantasy")){
+            return true;
+        }
+        else if(smallArg.equals("film-noir") || smallArg.equals("filmnoir")){
+            return true;
+        }
+        else if(smallArg.equals("history")){
+            return true;
+        }
+        else if(smallArg.equals("horror")){
+            return true;
+        }
+        else if(smallArg.equals("music")){
+            return true;
+        }
+        else if(smallArg.equals("musical")){
+            return true;
+        }
+        else if(smallArg.equals("mystery")){
+            return true;
+        }
+        else if(smallArg.equals("romance")){
+            return true;
+        }
+        else if(smallArg.equals("sci-fi") || smallArg.equals("scifi")){
+            return true;
+        }
+        else if(smallArg.equals("sport")){
+            return true;
+        }
+        else if(smallArg.equals("thriller")){
+            return true;
+        }
+        else if(smallArg.equals("war")){
+            return true;
+        }
+        else if(smallArg.equals("western")){
+            return true;
+        }
+
+        return false;
+    }
+
     public static void printList(PriorityQueue pQueue){
         int counter= 0;
-        System.out.println("Watch List");
+        System.out.println("watchList");
         while(!pQueue.isEmpty()){
             counter++;
             System.out.println(counter + ". " + pQueue.remove());
